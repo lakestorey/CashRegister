@@ -236,9 +236,9 @@
             // 
             this.resetButton.BackColor = System.Drawing.Color.Silver;
             this.resetButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.resetButton.Location = new System.Drawing.Point(252, 296);
+            this.resetButton.Location = new System.Drawing.Point(175, 296);
             this.resetButton.Name = "resetButton";
-            this.resetButton.Size = new System.Drawing.Size(75, 23);
+            this.resetButton.Size = new System.Drawing.Size(231, 23);
             this.resetButton.TabIndex = 20;
             this.resetButton.Text = "Reset";
             this.resetButton.UseVisualStyleBackColor = false;

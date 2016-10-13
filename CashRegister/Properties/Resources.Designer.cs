@@ -63,6 +63,15 @@ namespace CashRegister.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
         /// </summary>
+        internal static System.IO.UnmanagedMemoryStream Cash_Register_Cha_Ching_SoundBible_com_184076484 {
+            get {
+                return ResourceManager.GetStream("Cash_Register_Cha_Ching_SoundBible_com_184076484", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
         internal static System.IO.UnmanagedMemoryStream Cha_Ching_Register_Muska666_173262285 {
             get {
                 return ResourceManager.GetStream("Cha_Ching_Register_Muska666_173262285", resourceCulture);
