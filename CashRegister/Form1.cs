@@ -48,10 +48,33 @@ namespace CashRegister
         private void calculateTotalsButton_Click(object sender, EventArgs e)
         {
             //Assigns amounts of things
-            chickenFingersAmount = Convert.ToInt32(chickenFingersInput.Text);
-            friesAmount = Convert.ToInt32(friesInput.Text);
-            softDrinkAmount = Convert.ToInt32(softDrinkInput.Text);
-
+            try
+            {
+                chickenFingersAmount = Convert.ToInt32(chickenFingersInput.Text);
+            }
+            catch
+            {
+                errorLabel.Text = "Incorrect amount, please try again.";
+                errorLabel.ForeColor = Color.Black;
+            }
+            try
+            {
+                friesAmount = Convert.ToInt32(friesInput.Text);
+            }
+            catch
+            {
+                errorLabel.Text = "Incorrect amount, please try again.";
+                errorLabel.ForeColor = Color.Black;
+            }
+            try
+            {
+                softDrinkAmount = Convert.ToInt32(softDrinkInput.Text);
+            }
+            catch
+            {
+                errorLabel.Text = "Incorrect amount, please try again.";
+                errorLabel.ForeColor = Color.Black;
+            }
             //Calculates and prints sub total, tax and total
             subTotalPrice = (chickenFingersAmount * chickenFingersPrice)+(friesAmount * friesPrice)+(softDrinkAmount * softDrinkPrice);
             taxPrice = subTotalPrice * 0.13;
@@ -73,11 +96,27 @@ namespace CashRegister
         private void calculateChangeButton_Click(object sender, EventArgs e)
         {
             //calculates and outputs change amount
-            tenderedInputAmount = Convert.ToDouble(tenderedInput.Text);
-            changeAmount = tenderedInputAmount - totalPrice;
-            changeAmountLabel.Text = changeAmount.ToString("C");
-            changeAmountLabel.ForeColor = Color.Black;
-            chaChing.Play();
+            try
+            {
+                tenderedInputAmount = Convert.ToDouble(tenderedInput.Text);
+            }
+            catch
+            {
+                errorLabel.Text = "Incorrect amount, please try again.";
+                errorLabel.ForeColor = Color.Black;
+            }
+            if (tenderedInputAmount > totalPrice)
+            {
+                changeAmount = tenderedInputAmount - totalPrice;
+                changeAmountLabel.Text = changeAmount.ToString("C");
+                changeAmountLabel.ForeColor = Color.Black;
+                chaChing.Play();
+            }
+            else
+            {
+                errorLabel.Text = "Insufficient funds, please try again.";
+                errorLabel.ForeColor = Color.Black;
+            }
         }
         private void printReceiptButton_Click(object sender, EventArgs e)
         {
@@ -90,12 +129,12 @@ namespace CashRegister
             softDrinkTotal = softDrinkPrice * softDrinkAmount;
 
             //creates receipt
+            errorLabel.Visible = false;
             formGraphics.FillRectangle(whiteBrush, 175, 5, 230, 285);
-            Thread.Sleep(1000);
-            formGraphics.DrawString("Quikie k's", arialFont9, blackBrush, 260, 8);
+            formGraphics.DrawString("Quikie k's", arialFont9, blackBrush, 178, 8);
             chaChing.Play();
             Thread.Sleep(1000);
-            formGraphics.DrawString(DateTime.Now.ToString(), arialFont9, blackBrush, 220, 20);
+            formGraphics.DrawString(DateTime.Now.ToString(), arialFont9, blackBrush, 178, 20);
             chaChing.Play();
             Thread.Sleep(1000);
             if (chickenFingersAmount > 0)
@@ -116,19 +155,48 @@ namespace CashRegister
             }
             if (softDrinkAmount > 0)
             {
-                formGraphics.DrawString("Soft Drinks: ", arialFont9, blackBrush, 178, 32);
-                formGraphics.DrawString(softDrinkTotal.ToString("C"), arialFont9, blackBrush, 320, 32);
+                formGraphics.DrawString("Soft Drinks: ", arialFont9, blackBrush, 178, 56);
+                formGraphics.DrawString("x"+softDrinkAmount, arialFont9, blackBrush, 290, 56);
+                formGraphics.DrawString(softDrinkTotal.ToString("C"), arialFont9, blackBrush, 320, 56);
+                chaChing.Play();
+                Thread.Sleep(1000);
+            }
+            if (subTotalPrice > 0)
+            {
+                formGraphics.DrawString("Subtotal", arialFont9, blackBrush, 178, 80);
+                formGraphics.DrawString(subTotalPrice.ToString("C"), arialFont9, blackBrush, 320, 80);
+                chaChing.Play();
+                Thread.Sleep(1000);
+            }
+            if (taxPrice > 0)
+            {
+                formGraphics.DrawString("Tax", arialFont9, blackBrush, 178, 92);
+                formGraphics.DrawString(taxPrice.ToString("C"), arialFont9, blackBrush, 320, 92);
+                chaChing.Play();
+                Thread.Sleep(1000);
+            }
+            if (totalPrice > 0)
+            {
+                formGraphics.DrawString("Total", arialFont9, blackBrush, 178, 104);
+                formGraphics.DrawString(totalPrice.ToString("C"), arialFont9, blackBrush, 320, 104);
+                chaChing.Play();
+                Thread.Sleep(1000);
+            }
+            if (tenderedInputAmount > 0)
+            {
+                formGraphics.DrawString("Tendered", arialFont9, blackBrush, 178, 128);
+                formGraphics.DrawString(tenderedInputAmount.ToString("C"), arialFont9, blackBrush, 320, 128);
                 chaChing.Play();
                 Thread.Sleep(1000);
             }
             if (changeAmount > 0)
             {
-                formGraphics.DrawString("Change:", arialFont9, blackBrush, 178, 56);
-                formGraphics.DrawString(changeAmount.ToString("C"), arialFont9, blackBrush, 320, 56);
+                formGraphics.DrawString("Change:", arialFont9, blackBrush, 178, 140);
+                formGraphics.DrawString(changeAmount.ToString("C"), arialFont9, blackBrush, 320, 140);
                 chaChing.Play();
                 Thread.Sleep(1000);
             }
-            formGraphics.DrawString("Have A Nice Day!", arialFont9, blackBrush, 240, 80);
+            formGraphics.DrawString("Have A Nice Day!", arialFont9, blackBrush, 178, 275);
             chaChing.Play();
         }
 

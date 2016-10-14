@@ -49,6 +49,7 @@
             this.changeLabel = new System.Windows.Forms.Label();
             this.printReceiptButton = new System.Windows.Forms.Button();
             this.resetButton = new System.Windows.Forms.Button();
+            this.errorLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // chickenFingersLabel
@@ -244,12 +245,23 @@
             this.resetButton.UseVisualStyleBackColor = false;
             this.resetButton.Click += new System.EventHandler(this.resetButton_Click);
             // 
+            // errorLabel
+            // 
+            this.errorLabel.AutoSize = true;
+            this.errorLabel.ForeColor = System.Drawing.Color.Gainsboro;
+            this.errorLabel.Location = new System.Drawing.Point(228, 128);
+            this.errorLabel.Name = "errorLabel";
+            this.errorLabel.Size = new System.Drawing.Size(35, 13);
+            this.errorLabel.TabIndex = 21;
+            this.errorLabel.Text = "label1";
+            // 
             // QuickieKs
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Gainsboro;
             this.ClientSize = new System.Drawing.Size(426, 326);
+            this.Controls.Add(this.errorLabel);
             this.Controls.Add(this.resetButton);
             this.Controls.Add(this.printReceiptButton);
             this.Controls.Add(this.changeLabel);
@@ -301,6 +313,7 @@
         private System.Windows.Forms.Label changeLabel;
         private System.Windows.Forms.Button printReceiptButton;
         private System.Windows.Forms.Button resetButton;
+        private System.Windows.Forms.Label errorLabel;
     }
 }
 
